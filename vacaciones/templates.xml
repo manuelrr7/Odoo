@@ -1,0 +1,83 @@
+<openerp>
+    <data>
+        <!-- <template id="listing"> -->
+        <!--   <ul> -->
+        <!--     <li t-foreach="objects" t-as="object"> -->
+        <!--       <a t-attf-href="#{ root }/objects/#{ object.id }"> -->
+        <!--         <t t-esc="object.display_name"/> -->
+        <!--       </a> -->
+        <!--     </li> -->
+        <!--   </ul> -->
+        <!-- </template> -->
+        <!-- <template id="object"> -->
+        <!--   <h1><t t-esc="object.display_name"/></h1> -->
+        <!--   <dl> -->
+        <!--     <t t-foreach="object._fields" t-as="field"> -->
+        <!--       <dt><t t-esc="field"/></dt> -->
+        <!--       <dd><t t-esc="object[field]"/></dd> -->
+        <!--     </t> -->
+        <!--   </dl> -->
+        <!-- </template> -->
+
+
+        <record id="view_form_vacaciones_vacaciones" model="ir.ui.view">
+            <field name="name">Formulario vacaciones</field>
+            <field name="model">vacaciones.vacaciones</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group name="top">
+                            <group name="left">
+                                <field name="partner_id"/>
+                                <field name="fecha_inicio"/>
+                                <field name="fecha_fin"/>
+                            </group>
+                            <group name="right">
+                                <field name="dias_laborables"/>
+                                <field name="tipo_vacaciones"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_tree_vacaciones_vacaciones">
+            <field name="name">Vacaciones Vacaciones Tree</field>
+            <field name="model">vacaciones.vacaciones</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="partner_id"/>
+                    <field name="fecha_inicio"/>
+                    <field name="fecha_fin"/>
+                    <field name="dias_laborables"/>
+                    <field name="tipo_vacaciones"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_vacaciones_parent"
+                  name="Vacaciones"/>
+
+
+        <menuitem id="menu_vacaciones"
+                  name="Gestión vacaciones"
+                  parent="menu_vacaciones_parent"/>
+
+
+        <act_window id="action_vacaciones_vacaciones"
+                    name="Vacaciones Vacaciones"
+                    res_model="vacaciones.vacaciones"
+                    view_mode="tree,form"/>
+
+
+        <menuitem id="menu_vacaciones_vacaciones"
+                  name="Vacaciones"
+                  action="action_vacaciones_vacaciones"
+                  parent="menu_vacaciones"/>
+
+
+    </data>
+</openerp>
